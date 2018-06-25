@@ -125,4 +125,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Displays User page.
+     *
+     * @return string
+     */
+    public function actionUser()
+    {
+        return $this->render('user');
+    }
 }
