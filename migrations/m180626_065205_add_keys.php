@@ -15,7 +15,7 @@ class m180626_065205_add_keys extends Migration
         $this->createIndex("status_id_idx", "memo", "status_id");
 
         $this->addForeignKey("status_id_fk", "memo", "status_id",
-            "status", "id", "cascade", "cascade");
+            "status", "status_id", "cascade", "cascade");
 
 
     }
