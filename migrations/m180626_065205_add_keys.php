@@ -15,16 +15,8 @@ class m180626_065205_add_keys extends Migration
         $this->createIndex("status_id_idx", "memo", "status_id");
 
         $this->addForeignKey("status_id_fk", "memo", "status_id",
-            "status", "id", "cascade", "cascade");
+            "status", "status_id", "cascade", "cascade");
 
-
-        $columns = ['name','memo', 'memo_owner','status_id', 'created_at','updated_at'];
-        $this->batchInsert('{{%memo}}', $columns, [
-            ['Summer Memo','Start of Summer Memo Event',1, 1,date('Y-m-d '),date('Y-m-d '), gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
-            ['Spring Memo','Start of Spring Memo Event',1, 1,date('Y-m-d '),date('Y-m-d '),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
-            ['Winter Memo','Start of Winter Memo Event',1, 1,date('Y-m-d '),date('Y-m-d '),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
-            ['Autumn Memo','Start of Autumn Memo Event',1, 1,date('Y-m-d '),date('Y-m-d '),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
-        ]);
 
     }
 
