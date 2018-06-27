@@ -81,4 +81,35 @@ class MemoController extends Controller
 
     }
 
+
+    public function abc()
+    {
+        $status = "active";
+
+        if ($status == "active") {
+            echo "aktif";
+            // processing aktiv user
+            // 40++ codes
+        } else {
+            echo "x aktive";
+            // processing aktiv user
+            // 40++ codes
+        }
+    }
+
+    public function abc2()
+    {
+        $status = "active";
+
+        if (!$status) {
+            // x aktif
+            // codes
+        }
+
+        if($status == "pending") {
+            // asdasd
+        }
+
+        // aktif
+    }
 }
