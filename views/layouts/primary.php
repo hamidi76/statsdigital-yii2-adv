@@ -28,8 +28,9 @@ use yii\bootstrap\Html;
 
 	<?= $this->render('_navigation.php') ?>
 
+    <div class="row">
 	<?= $content ?>
-
+    </div>
 	<?php $this->endBody() ?>
 </body>
 </html>

@@ -10,20 +10,9 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
-    <h1>Memos</h1>
-    <ul>
-        <?php foreach ($memos as $memo): ?>
-            <li>
-                <?= Html::encode("{$memo->name} ({$memo->memo})") ?>:
-                <?= $memo->memo_owner ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
 
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
-
-
-
+<div class="takwim-index container" style="margin-top: 100px">
+    <h3>Memos</h3>
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
     'columns' => [
@@ -33,3 +22,5 @@ use yii\widgets\LinkPager;
         // ...
     ],
 ]) ?>
+
+</div>
