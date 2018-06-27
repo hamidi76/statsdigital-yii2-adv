@@ -33,8 +33,6 @@ class MemoController extends Controller
             ->all();
 
 
-
-
         //calling data using active data provider
 
         $dataProvider = new ActiveDataProvider([
@@ -50,20 +48,32 @@ class MemoController extends Controller
         return $this->render('index', [
             'memos' => $memos,
             'pagination' => $pagination,
-            'dataProvider'=> $dataProvider
+            'dataProvider' => $dataProvider
         ]);
     }
 
     public function actionCreate()
     {
+        //
         $model = new Memo();
 
-        if(Yii::$app->request->isPost)
-        {
+        //$var = array();
+
+        //check if there any data submited
+        if (Yii::$app->request->isPost) {
+
+            if ($model->load(Yii::$app->request->post())) {
+
+                if($model->save())
+                {
+                    $this->redirect(['index']);
+                }
+            }
+
 
         }
 
-        return $this->render('create',compact('model'));
+        return $this->render('create', compact('model'));
 
     }
 
