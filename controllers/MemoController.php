@@ -64,6 +64,10 @@ class MemoController extends Controller
 
             if ($model->load(Yii::$app->request->post())) {
 
+                $model->created_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
+                $model->updated_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
+
+
                 if($model->save())
                 {
                     $this->redirect(['index']);
