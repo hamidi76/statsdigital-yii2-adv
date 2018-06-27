@@ -21,6 +21,7 @@ use yii\bootstrap\Html;
 
     <?= $form->field($model, 'memo')->textInput() ?>
 
+    <?= $form->field($model, 'memo_owner')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app', 'Add'), ['class' => 'btn btn-success']) ?>

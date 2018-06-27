@@ -66,7 +66,7 @@ class MemoController extends Controller
 
                 $model->created_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
                 $model->updated_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
-
+                $model->memo_owner = Yii::$app->user->id;
 
                 if($model->save())
                 {
@@ -82,34 +82,32 @@ class MemoController extends Controller
     }
 
 
-    public function abc()
+    public function actionUpdate($id)
     {
-        $status = "active";
+        //
+        $model = Memo::findOne($id);
 
-        if ($status == "active") {
-            echo "aktif";
-            // processing aktiv user
-            // 40++ codes
-        } else {
-            echo "x aktive";
-            // processing aktiv user
-            // 40++ codes
-        }
-    }
+        //$var = array();
 
-    public function abc2()
-    {
-        $status = "active";
+        //check if there any data submited
+        if (Yii::$app->request->isPost) {
 
-        if (!$status) {
-            // x aktif
-            // codes
-        }
+            if ($model->load(Yii::$app->request->post())) {
 
-        if($status == "pending") {
-            // asdasd
+                $model->created_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
+                $model->updated_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
+                $model->memo_owner = Yii::$app->user->id;
+
+                if($model->save())
+                {
+                    $this->redirect(['index']);
+                }
+            }
+
+
         }
 
-        // aktif
+        return $this->render('update', compact('model'));
+
     }
 }

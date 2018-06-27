@@ -1,22 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: amzari
- * Date: 6/26/18
- * Time: 4:58 PM
- */
 
 use yii\helpers\Html;
-use yii\widgets\LinkPager;
-?>
-    <h1>Status</h1>
-    <ul>
-        <?php foreach ($status as $view): ?>
-            <li>
-                <?= Html::encode("{$view->status_name} ({$view->class})") ?>:
-                <?= $view->created_at ?>
-            </li>
-        <?php endforeach; ?>
-    </ul>
+use yii\grid\GridView;
+use yii\widgets\Pjax;
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\StatusSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-<?= LinkPager::widget(['pagination' => $pagination]) ?>
+$this->title = Yii::t('app', 'Statuses');
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="status-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a(Yii::t('app', 'Create Status'), ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'status_id',
+            'status_name',
+            'class',
+            'created_at',
+            'updated_at',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+    <?php Pjax::end(); ?>
+</div>
