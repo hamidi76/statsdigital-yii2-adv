@@ -8,6 +8,8 @@
 
 namespace app\controllers;
 
+use Yii;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\Memo;
@@ -18,6 +20,7 @@ class MemoController extends Controller
     {
         $query = Memo::find();
 
+        //Basic Calling query using active record
 
         $pagination = new Pagination([
             'defaultPageSize' => 5,
@@ -29,9 +32,39 @@ class MemoController extends Controller
             ->limit($pagination->limit)
             ->all();
 
+
+
+
+        //calling data using active data provider
+
+        $dataProvider = new ActiveDataProvider([
+            "query" => $query,
+            "pagination" => [
+                "pageSize" => 10,
+            ]
+        ]);
+
+
+        //var_dump($dataProvider);
+
         return $this->render('index', [
             'memos' => $memos,
             'pagination' => $pagination,
+            'dataProvider'=> $dataProvider
         ]);
     }
+
+    public function actionCreate()
+    {
+        $model = new Memo();
+
+        if(Yii::$app->request->isPost)
+        {
+
+        }
+
+        return $this->render('create',compact('model'));
+
+    }
+
 }

@@ -13,6 +13,13 @@ use yii\db\ActiveRecord;
 class Memo extends ActiveRecord
 {
 
+    public function rules()
+    {
+        return [
+            // define validation rules here
+        ];
+    }
+
 
 
 }

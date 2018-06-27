@@ -6,6 +6,7 @@
  * Time: 4:16 PM
  */
 
+use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
 ?>
@@ -20,3 +21,15 @@ use yii\widgets\LinkPager;
     </ul>
 
 <?= LinkPager::widget(['pagination' => $pagination]) ?>
+
+
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'columns' => [
+        'id',
+        'memo',
+        'created_at:datetime',
+        // ...
+    ],
+]) ?>
