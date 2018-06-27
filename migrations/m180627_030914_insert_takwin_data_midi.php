@@ -18,6 +18,8 @@ class m180627_030914_insert_takwin_data_midi extends Migration
             ['Nasi Ayam','Nasi Ayam Madu',gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
             ['Roti Canai','Roti Bawang',gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
             ['Roti Canai','Roti Sardin',gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
+            ['Roti Canai','Roti Telor',gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s'),gmdate('Y-m-d H:i:s')],
+
         ]);
 
     }
