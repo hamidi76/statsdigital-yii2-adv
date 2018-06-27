@@ -18,7 +18,8 @@
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0",
-        "amnah/yii2-user": "^5.0"
+        "amnah/yii2-user": "^5.0",
+        "p2made/yii2-startbootstrap-themes": "^2.16"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
@@ -28,7 +29,6 @@
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1",
         "codeception/specify": "~0.4.3",
-        "p2made/yii2-startbootstrap-themes": "^2.16"
     },
     "config": {
         "process-timeout": 1800,
