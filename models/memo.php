@@ -18,7 +18,8 @@ class Memo extends ActiveRecord
         return [
             // define validation rules here
             [['name','memo','memo_owner'], 'required'],
-            [['memo_owner'],'integer']
+            [['memo_owner'],'integer'],
+            [['created_at','updated_at'],'safe']
         ];
     }
 
