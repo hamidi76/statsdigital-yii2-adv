@@ -8,7 +8,7 @@
 
 namespace app\controllers;
 
-use app\modules\quiz\models\UploadForm;
+use app\models\UploadForm;
 use app\modules\user\models\User;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -285,7 +285,7 @@ class MemoController extends Controller
 
 
     }
-    public function actionUploadTemplate()
+    public function actionUpload()
     {
         $model = new UploadForm();
         if (Yii::$app->request->isPost) {
@@ -302,12 +302,12 @@ class MemoController extends Controller
 
                     if ($this->ReadExcellFile($upload_path)) {
 
-                        return $this->redirect(['default/review-import']);
+                        return $this->redirect(['review-import']);
                     }
                 }
             }
         }
-        return $this->render('upload_memo', compact('model'));
+        return $this->render('upload', compact('model'));
     }
 
     private function ReadExcellFile($upload_path)
@@ -319,47 +319,27 @@ class MemoController extends Controller
 
         $highestRow = $objWorksheet->getHighestRow();
 
-        $quiz_data = [];
-        $data = [];
-        $question = null;
-        $answer_a = null;
-        $answer_b = null;
-        $answer_c = null;
-        $answer_d = null;
-        $type_id = null;
-        $real_answer = null;
-        $difficulty = null;
-        $season_id = null;
-
+        $memo_data = [];
         for ($row = 2; $row <= $highestRow; ++$row) {
 
-            for ($col = 1; $col <= 8; ++$col) {
+            for ($col = 1; $col <= 3; ++$col) {
 
-                $question = $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
-                $answer_a = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
-                $answer_b = $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
-                $answer_c = $objWorksheet->getCellByColumnAndRow(4, $row)->getValue();
-                $answer_d = $objWorksheet->getCellByColumnAndRow(5, $row)->getValue();
-                $type_id = $objWorksheet->getCellByColumnAndRow(6, $row)->getValue();
-                $real_answer = $objWorksheet->getCellByColumnAndRow(7, $row)->getValue();
-                $difficulty = $objWorksheet->getCellByColumnAndRow(8, $row)->getValue();
-                $season_id = $objWorksheet->getCellByColumnAndRow(9, $row)->getValue();
+                $name = $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
+                $memo = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
+                $memo_owner = $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
+
+
 
                 $data = [
-                    'question' => $question,
-                    'answer_a' => $answer_a,
-                    'answer_b' => $answer_b,
-                    'answer_c' => $answer_c,
-                    'answer_d' => $answer_d,
-                    'type_id'=> $type_id,
-                    'real_answer' => $real_answer,
-                    'difficulty' => $difficulty,
-                    'season_id' => $season_id,
+                    'name' => $name,
+                    'memo' => $memo,
+                    'memo_owner' => $memo_owner
+
                 ];
             }
-            array_push($quiz_data, $data);
+            array_push($memo_data, $data);
 
-            Yii::$app->session->set('quiz_data', $quiz_data);
+            Yii::$app->session->set('memo_data', $memo_data);
 
         }
 

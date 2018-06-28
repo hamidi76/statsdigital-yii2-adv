@@ -6,7 +6,7 @@
  * Time: 5:30 PM
  */
 
-namespace app\modules\quiz\models;
+namespace app\models;
 
 use yii\base\Model;
 use yii\web\UploadedFile;

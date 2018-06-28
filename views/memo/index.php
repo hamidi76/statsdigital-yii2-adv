@@ -23,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= Html::a('Download Memo', ['download'], ['class' => 'btn btn-info']) ?>
 
+        <?= Html::a('Upload Memo', ['upload'], ['class' => 'btn btn-warning']) ?>
+
     </p>
 
     <?= GridView::widget([
