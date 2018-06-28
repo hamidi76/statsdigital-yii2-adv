@@ -11,7 +11,7 @@ class m180628_080003_create_mongo_collection extends \yii\mongodb\Migration
      */
     public function up()
     {
-        $this->createCollection("memo");
+        $this->createCollection("memo_mongo");
     }
 
     /**
