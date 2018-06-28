@@ -15,7 +15,7 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\data\Pagination;
-use app\models\Memo;
+use app\models\memo;
 
 class MemoController extends Controller
 {

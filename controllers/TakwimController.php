@@ -173,7 +173,7 @@ class TakwimController extends Controller
         $writer = new Xlsx($spreadsheet);
         //->send('hello world.xlsx');
 
-        $filename = 'MemoTemplate';
+        $filename = 'TakwimTemplate';
 
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 
