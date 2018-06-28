@@ -77,7 +77,7 @@ class MemoController extends Controller
                     {
 
                         \Yii::$app->mailer->compose()
-                            ->setTo($val->email)
+                            ->setTo($val['email'])
                             ->setSubject('[NOTIFICATION] New Memo')
                             ->setHtmlBody('Dear Staff '
                                 . '<br>New Memo have been created '
