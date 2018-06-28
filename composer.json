@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "amnah/yii2-user": "^5.0",
         "p2made/yii2-startbootstrap-themes": "^2.16",
-        "yiisoft/yii2-mongodb": "~2.1.0"
+        "yiisoft/yii2-mongodb": "~2.1.0",
+        "phpoffice/phpspreadsheet": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

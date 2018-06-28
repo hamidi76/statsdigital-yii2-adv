@@ -28,7 +28,7 @@ use yii\bootstrap\Html;
 
 	<?= $this->render('_navigation.php') ?>
 
-    <div class="row">
+    <div class="container" style="margin-top: 100px">
 	<?= $content ?>
     </div>
 	<?php $this->endBody() ?>

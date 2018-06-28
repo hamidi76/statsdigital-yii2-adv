@@ -17,7 +17,7 @@ $module = $this->context->module;
 $this->title = Yii::t('user', 'Register');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-default-register">
+<div class="user-default-register" style="margin-top: 100px">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
