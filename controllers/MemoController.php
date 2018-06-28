@@ -8,6 +8,7 @@
 
 namespace app\controllers;
 
+use app\modules\user\models\User;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -70,6 +71,20 @@ class MemoController extends Controller
 
                 if($model->save())
                 {
+                    $user_mail = User::find()->asArray()->all();
+
+                    foreach ($user_mail as $val)
+                    {
+
+                        \Yii::$app->mailer->compose()
+                            ->setTo($val->email)
+                            ->setSubject('[NOTIFICATION] New Memo')
+                            ->setHtmlBody('Dear Staff '
+                                . '<br>New Memo have been created '
+                                . 'using <strong>' . $model->memo . ''
+                                . '</strong> . <br>TQ.')
+                            ->send();
+                    }
                     $this->redirect(['index']);
                 }
             }

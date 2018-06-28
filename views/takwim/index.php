@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 $this->title = 'Takwims';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="takwim-index container">
+<div class="takwim-index cont">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php Pjax::begin(); ?>

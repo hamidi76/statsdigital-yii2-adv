@@ -29,11 +29,29 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
+            // send all mails to a file by default. You have to set
+            // 'useFileTransport' to false and configure a transport
+            // for the mailer to send real emails.
+            'useFileTransport' => false,
             'messageConfig' => [
-                'from' => ['admin@website.com' => 'Admin'], // this is needed for sending emails
+                'from' => ['enquiry@odekan.my' => 'Odekan Mailer'], // this is needed for sending emails
                 'charset' => 'UTF-8',
-            ]
+            ],
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'smtp.sendgrid.net',
+                'username' => 'faridyusof727',
+                'password' => 'utem1234',
+                'port' => '2525',
+                'encryption' => 'tls',
+//                'streamOptions' => [
+//                    'ssl' => [
+//                        'allow_self_signed' => true,
+//                        'verify_peer' => false,
+//                        'verify_peer_name' => false,
+//                    ],
+//                ],
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
