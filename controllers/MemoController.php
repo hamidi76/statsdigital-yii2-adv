@@ -8,12 +8,14 @@
 
 namespace app\controllers;
 
+use app\models\MemoMongo;
 use app\models\UploadForm;
 use app\modules\user\models\User;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Yii;
 use yii\data\ActiveDataProvider;
+use yii\data\ArrayDataProvider;
 use yii\web\Controller;
 use yii\data\Pagination;
 use app\models\memo;
@@ -350,36 +352,28 @@ class MemoController extends Controller
     public function actionReviewImport()
     {
 
-        $quiz = new Quiz();
+        $memo = new MemoMongo();
 
-        $count_quiz = count(Yii::$app->session->get('quiz_data'));
+        $count_memo = count(Yii::$app->session->get('memo_data'));
 
         if (Yii::$app->request->post()) {
 
-            if (Yii::$app->session->has('quiz_data')) {
+            if (Yii::$app->session->has('memo_data')) {
 
-                $quiz_data = Yii::$app->session->get('quiz_data');
+                $memo_data = Yii::$app->session->get('memo_data');
 
 
-                foreach ($quiz_data as $value) {
+                foreach ($memo_data as $value) {
 
-                    $quiz = new Quiz();
+                    $memo = new MemoMongo();
 
-                    $quiz->question = $value['question'];
+                    $memo->name = (string)$value['name'];
+                    $memo->memo = (string)$value['memo'];
+                    $memo->memo_owner = (string)$value['memo_owner'];
+                    $memo->created_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
+                    $memo->updated_at = Yii::$app->formatter->asDatetime(date('d-m-Y H:i:s'), 'php:Y-m-d H:i:s');
 
-                    $quiz->answer_a = (string)$value['answer_a'];
-                    $quiz->answer_b = (string)$value['answer_b'];
-                    $quiz->answer_c = (string)$value['answer_c'];
-                    $quiz->answer_d = (string)$value['answer_d'];
-                    $quiz->type_id = $value['type_id'];
-                    $quiz->real_answer = $value['real_answer'];
-                    $quiz->difficutly = $value['difficulty'];
-                    $quiz->season_id = $value['season_id'];
-                    $quiz->status_id = 1;
-                    $quiz->created_at = SiteController::GetNow();;
-                    $quiz->updated_at = SiteController::GetNow();;
-
-                    $quiz->save();
+                    $memo->save();
                     //var_dump($quiz);
 
                 }
@@ -388,19 +382,16 @@ class MemoController extends Controller
                 return Yii::$app->response->redirect('index');
             }
         }
-        $quiz_data = Yii::$app->session->get('quiz_data');
+        $memo_data = Yii::$app->session->get('memo_data');
 
-        $provider = new ArrayDataProvider([
-            'allModels' => $quiz_data,
+        $dataProvider = new ArrayDataProvider([
+            'allModels' => $memo_data,
             'pagination' => [
                 'pageSize' => 10,
             ],
-            'sort' => [
-                'attributes' => ['question','type_id', 'answer_a','answer_b','answer_c','answer_d','real_answer','difficulty','season_id'],
-            ],
         ]);
 
-        return $this->render('review_import', compact('provider','quiz','count_quiz'));
+        return $this->render('review_mongo', compact('dataProvider','quiz','count_quiz'));
     }
 
 }

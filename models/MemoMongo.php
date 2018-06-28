@@ -11,6 +11,8 @@ use Yii;
  * @property mixed $name
  * @property mixed $memo
  * @property mixed $memo_owner
+ * @property mixed $created_at
+ * @property mixed $updated_at
  */
 class MemoMongo extends \yii\mongodb\ActiveRecord
 {
@@ -32,6 +34,8 @@ class MemoMongo extends \yii\mongodb\ActiveRecord
             'name',
             'memo',
             'memo_owner',
+            'created_at',
+            'updated_at',
         ];
     }
 
@@ -41,7 +45,7 @@ class MemoMongo extends \yii\mongodb\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'memo', 'memo_owner'], 'safe']
+            [['name', 'memo', 'memo_owner', 'created_at', 'updated_at'], 'safe']
         ];
     }
 
@@ -55,6 +59,8 @@ class MemoMongo extends \yii\mongodb\ActiveRecord
             'name' => Yii::t('app', 'Name'),
             'memo' => Yii::t('app', 'Memo'),
             'memo_owner' => Yii::t('app', 'Memo Owner'),
+            'created_at' => Yii::t('app', 'Created At'),
+            'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 }
