@@ -18,6 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Memo', ['create'], ['class' => 'btn btn-success']) ?>
+
+        <?= Html::a('Download Template', ['download-excel'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
