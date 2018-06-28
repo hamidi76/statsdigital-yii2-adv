@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create Takwim', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Download Template', ['download-excel'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Download Template', ['download-excel'], ['class' => 'btn btn-warning']) ?>
     </p>
 
     <?= GridView::widget([

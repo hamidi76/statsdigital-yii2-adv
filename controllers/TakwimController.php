@@ -131,9 +131,11 @@ class TakwimController extends Controller
     {
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'NAME');
-        $sheet->setCellValue('B1', 'MEMO');
-        $sheet->setCellValue('C1', 'OWNER');
+        $sheet->setCellValue('A1', 'ID');
+        $sheet->setCellValue('B1', 'TAJUK');
+        $sheet->setCellValue('C1', 'KETERANGAN');
+        $sheet->setCellValue('D1', 'START DATE');
+        $sheet->setCellValue('E1', 'END DATE');
 
 
 
