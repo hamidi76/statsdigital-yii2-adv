@@ -129,14 +129,19 @@ class MemoController extends Controller
 
     public function actionDownloadExcel()
     {
+        //Declare Php Office extension model
         $spreadsheet = new Spreadsheet();
+        //getting the active spreadsheet
         $sheet = $spreadsheet->getActiveSheet();
+
+
+        //if want to change excel column name or structure
         $sheet->setCellValue('A1', 'NAME');
         $sheet->setCellValue('B1', 'MEMO');
         $sheet->setCellValue('C1', 'OWNER');
 
 
-
+        //for changing excel file design
         $styleArray = [
             'font' => [
                 'bold' => true,
@@ -162,19 +167,22 @@ class MemoController extends Controller
         ];
 
 
+        //to loop width and alignment for each declared column
         for ($i = 'A'; $i <= 'H'; $i++) {
             $spreadsheet->getActiveSheet()->getColumnDimension($i)->setWidth(15);
             $spreadsheet->getActiveSheet()->getStyle($i . '1')->applyFromArray($styleArray);
         }
 
 
+        //this is towrite the coded above comfiguration into phpoffice write
         $writer = new Xlsx($spreadsheet);
         //->send('hello world.xlsx');
 
+        //to change file name
         $filename = 'MemoTemplate';
 
+        //setting mandatory for browser
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-
         header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"'); /*-- $filename is  xsl filename ---*/
         header('Cache-Control: max-age=0');
         header('Cache-Control: max-age=1');
@@ -183,9 +191,16 @@ class MemoController extends Controller
         header('Cache-Control: cache, must-revalidate');
         header('Pragma: public');
 
+        //this will save the writed phpoffice model into php output
         $writer->save('php://output');
+        //this is to avoid unwanted setting to be loading into exported excel
         exit;
 
+
+    }
+
+    public function actionUploadTemplate()
+    {
 
     }
 }
