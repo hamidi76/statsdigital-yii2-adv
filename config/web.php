@@ -34,16 +34,16 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => false,
             'messageConfig' => [
-                'from' => ['enquiry@odekan.my' => 'Odekan Mailer'], // this is needed for sending emails
+                'from' => ['enquiry@odekan.my' => 'Stats Digital Mailer'], // this is needed for sending emails
                 'charset' => 'UTF-8',
             ],
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.sendgrid.net',
-                'username' => 'faridyusof727',
-                'password' => 'utem1234',
-                'port' => '2525',
-                'encryption' => 'tls',
+//            'transport' => [
+//                'class' => 'Swift_SmtpTransport',
+//                'host' => 'smtp.gmail.com',
+//                'username' => 'mbn7938@gmail.com',
+//                'password' => 'utem1234',
+//                'port' => '465 ',
+//                'encryption' => 'ssl',
 //                'streamOptions' => [
 //                    'ssl' => [
 //                        'allow_self_signed' => true,
@@ -51,7 +51,7 @@ $config = [
 //                        'verify_peer_name' => false,
 //                    ],
 //                ],
-            ],
+//            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
