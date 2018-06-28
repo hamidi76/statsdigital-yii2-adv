@@ -213,9 +213,10 @@ class MemoController extends Controller
         $sheet->setCellValue('B1', 'MEMO');
         $sheet->setCellValue('C1', 'OWNER');
 
-
+        //querying data from memo
         $memo = Memo::find()->asArray()->all();
 
+        //looping that from memo into excel format
         $bil = 1;
         foreach ($memo as $value)
         {
@@ -290,7 +291,6 @@ class MemoController extends Controller
         if (Yii::$app->request->isPost) {
 
             if ($_FILES) {
-
                 //die(var_dump($_FILES));
                 $model = new UploadForm();
 
@@ -307,7 +307,7 @@ class MemoController extends Controller
                 }
             }
         }
-        return $this->render('import_template', compact('model'));
+        return $this->render('upload_memo', compact('model'));
     }
 
     private function ReadExcellFile($upload_path)
