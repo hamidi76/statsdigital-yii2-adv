@@ -2,6 +2,7 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
+$mongo = require __DIR__ . "/mongo.php";
 
 $config = [
     'id' => 'basic-console',
@@ -25,11 +26,21 @@ $config = [
             ],
         ],
         'db' => $db,
+        'mongodb' => $mongo
     ],
     'modules' => [
         'user' => [
             'class' => 'amnah\yii2\user\Module',
         ],
+    ],
+    'controllerMap' => [
+//        'fixture' => [ // Fixture generation command line.
+//            'class' => 'yii\faker\FixtureController',
+//        ],
+        'mongodb-migrate' => [
+            'class' => 'yii\mongodb\console\controllers\MigrateController',
+            "migrationPath" => "@app/migrations/mongos"
+        ]
     ],
     'params' => $params,
     /*
