@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use Yii;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use app\models\Status;
 use app\models\StatusSearch;
 use yii\web\Controller;
@@ -123,5 +125,68 @@ class StatusController extends Controller
         }
 
         throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+    }
+
+     public function actionDownloadExcel()
+    {
+        $spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'STATUS NAME');
+        $sheet->setCellValue('B1', 'CLASS');
+        $sheet->setCellValue('C1', 'CREATED AT');
+        $sheet->setCellValue('C1', 'KEMASKINI AT');
+
+
+
+        $styleArray = [
+            'font' => [
+                'bold' => true,
+            ],
+            'alignment' => [
+                'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+            ],
+            'borders' => [
+                'top' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                ],
+            ],
+            'fill' => [
+                'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_GRADIENT_LINEAR,
+                'rotation' => 90,
+                'startColor' => [
+                    'argb' => 'FFA0A0A0',
+                ],
+                'endColor' => [
+                    'argb' => 'FFFFFFFF',
+                ],
+            ],
+        ];
+
+
+        for ($i = 'A'; $i <= 'H'; $i++) {
+            $spreadsheet->getActiveSheet()->getColumnDimension($i)->setWidth(15);
+            $spreadsheet->getActiveSheet()->getStyle($i . '1')->applyFromArray($styleArray);
+        }
+
+
+        $writer = new Xlsx($spreadsheet);
+        //->send('hello world.xlsx');
+
+        $filename = 'StatusTemplate';
+
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+
+        header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"'); /*-- $filename is  xsl filename ---*/
+        header('Cache-Control: max-age=0');
+        header('Cache-Control: max-age=1');
+        header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
+        header('Last-Modified: ' . gmdate('D, d M Y H:i:s') . ' GMT');
+        header('Cache-Control: cache, must-revalidate');
+        header('Pragma: public');
+
+        $writer->save('php://output');
+        exit;
+
+
     }
 }
