@@ -123,8 +123,6 @@ class MemoMongoController extends Controller
                     $this->redirect(['index']);
                 }
             }
-
-
         }
 
         return $this->render('update', compact('model'));
