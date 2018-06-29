@@ -43,8 +43,6 @@ class RestController extends ActiveController
         {
             $post = Yii::$app->request->post();
 
-            //return $post;
-
             $check = User::find()
                 ->where(['username' =>$post['username']])
                 //->andWhere(['password' => $post['password']])
