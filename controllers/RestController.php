@@ -10,6 +10,8 @@ namespace app\controllers;
 
 use app\library\CorsCustom;
 use app\models\Memo;
+use app\modules\user\models\User;
+use Yii;
 use yii\data\ActiveDataProvider;
 use yii\rest\ActiveController;
 
@@ -33,5 +35,41 @@ class RestController extends ActiveController
         ];
 
         return $behaviors;
+    }
+
+    public function actionAuth()
+    {
+        if(Yii::$app->request->isPost)
+        {
+            $post = Yii::$app->request->post();
+
+            //return $post;
+
+            $check = User::find()
+                ->where(['username' =>$post['username']])
+                //->andWhere(['password' => $post['password']])
+                ->asArray()->one();
+
+            if($check)
+            {
+                return [
+                    'msg' =>'Success Login'
+                ];
+            }
+            else
+            {
+                return [
+                    'msg' =>'Failed Login'
+                ];
+            }
+        }
+        else
+        {
+            return [
+                'msg' =>'No Credential'
+            ];
+        }
+
+
     }
 }
