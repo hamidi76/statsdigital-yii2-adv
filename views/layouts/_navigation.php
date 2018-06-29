@@ -30,6 +30,7 @@ if (Yii::$app->user->isGuest) {
 	$menuItems = [
         ['label' => 'Takwim', 'url' => Url::to(["/takwim"]) ],
         ['label' => 'Memo', 'url' =>  Url::to(["/memo"]) ],
+        ['label' => 'Memo Archive', 'url' =>  Url::to(["/memo-mongo"]) ],
         ['label' => 'Status', 'url' =>  Url::to(["/status"]) ],
         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/user/logout'],
