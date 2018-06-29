@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="memo-index container">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php Pjax::begin(); ?>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Upload Memo', ['upload'], ['class' => 'btn btn-warning']) ?>
 
     </p>
-
+    <?php Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
