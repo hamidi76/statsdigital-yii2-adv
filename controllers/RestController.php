@@ -53,12 +53,14 @@ class RestController extends ActiveController
             if($check)
             {
                 return [
+                    'status'=> 1,
                     'msg' =>'Success Login'
                 ];
             }
             else
             {
                 return [
+                    'status'=> 2,
                     'msg' =>'Failed Login'
                 ];
             }
@@ -66,6 +68,7 @@ class RestController extends ActiveController
         else
         {
             return [
+                'status'=> 0,
                 'msg' =>'No Credential'
             ];
         }
